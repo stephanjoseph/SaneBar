@@ -27,7 +27,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/Scripts/SaneMaster.rb health"
+            "command": "\"$CLAUDE_PROJECT_DIR\"/Scripts/SaneMaster.rb session_end --skip-prompts"
           }
         ]
       }
@@ -39,6 +39,16 @@
           {
             "type": "command",
             "command": "ruby \"$CLAUDE_PROJECT_DIR\"/Scripts/sanemaster/hooks/two_fix_reminder.rb",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ruby \"$CLAUDE_PROJECT_DIR\"/Scripts/sanemaster/hooks/skill_validator.rb",
             "timeout": 5
           }
         ]
