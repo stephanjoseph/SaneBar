@@ -94,6 +94,26 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ruby \"$CLAUDE_PROJECT_DIR\"/Scripts/sanemaster/hooks/test_quality_checker.rb",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ruby \"$CLAUDE_PROJECT_DIR\"/Scripts/sanemaster/hooks/test_quality_checker.rb",
+            "timeout": 5
+          }
+        ]
       }
     ]
   }
