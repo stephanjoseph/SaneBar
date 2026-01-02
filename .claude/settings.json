@@ -43,6 +43,11 @@
           },
           {
             "type": "command",
+            "command": "ruby \"$CLAUDE_PROJECT_DIR\"/Scripts/sanemaster/hooks/edit_validator.rb",
+            "timeout": 5
+          },
+          {
+            "type": "command",
             "command": "ruby \"$CLAUDE_PROJECT_DIR\"/Scripts/sanemaster/hooks/two_fix_reminder.rb",
             "timeout": 5
           }
