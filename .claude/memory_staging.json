@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-01-07T07:59:50-05:00",
+  "project": "SaneBar",
+  "session_score": 8,
+  "violations_this_session": {
+    "bypass_attempt": 1,
+    "Rule #2": 2
+  },
+  "cumulative_weak_spots": {},
+  "needs_memory_update": false,
+  "processed_at": "2026-01-07T08:38:25-05:00"
+}
