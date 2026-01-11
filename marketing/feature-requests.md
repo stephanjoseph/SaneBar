@@ -29,16 +29,22 @@
 ---
 
 ### 2. Find Icon Speed Improvement
-**Priority: HIGH** | **Requests: 1** | **Status: Implemented**
+**Priority: HIGH** | **Requests: 2** | **Status: Needs More Work**
 
 | Requester | Request | Notes |
 |-----------|---------|-------|
 | u/Elegant_Mobile4311 | "Find Icon function is slow to respond... this feature needs to be polished" | Primary use case for them |
+| bleducnx (Discord) | "searching always takes more than 6 seconds! This makes it unusable" | MBA M2, 19 hidden modules |
 
-**Implemented:**
+**Implemented (v1.0.3):**
 - Cache-first open + background refresh
 - Longer-lived AX cache + prewarm on launch
 - All/Hidden toggle so the feature stays useful even when nothing is "hidden by SaneBar"
+
+**Still Reported Slow (Jan 11, 2026):**
+- bleducnx reports 6+ seconds on MacBook Air M2
+- May need more aggressive caching or background refresh
+- Consider: instant display of cached icons, then refresh in background
 
 ---
 
@@ -78,11 +84,12 @@
 ---
 
 ### 5. Secondary Menu Bar Row
-**Priority: LOW** | **Requests: 1** | **Status: Not Planned**
+**Priority: LOW** | **Requests: 2** | **Status: Not Planned**
 
 | Requester | Request | Notes |
 |-----------|---------|-------|
 | u/MaxGaav | "a 2nd menubar below the menubar for hidden icons" | Alternative to full-width expansion |
+| bleducnx (Discord) | "secondary bar system used by Bartender, Barbee, Ice... is more efficient" | Power user with 40-50 icons |
 
 **Analysis:**
 - Significant UI/architecture change
@@ -92,23 +99,81 @@
 
 ---
 
+### 6. Icon Groups / Organization
+**Priority: MEDIUM** | **Requests: 1** | **Status: Not Started**
+
+| Requester | Request | Notes |
+|-----------|---------|-------|
+| s/macenerd (Reddit) | "I'd love to have groups. I have so many icons I'll divide them up into groups to help organize them" | Jan 11, 2026 |
+
+**Analysis:**
+- Would allow users to categorize icons (e.g., "Social", "Dev Tools", "System")
+- Could integrate with Find Icon for filtering by group
+- Medium complexity - need UI for group management
+
+---
+
+### 7. Third-Party Overlay Detection (Virtual Notch)
+**Priority: MEDIUM** | **Requests: 1** | **Status: Not Started**
+
+| Requester | Request | Notes |
+|-----------|---------|-------|
+| bleducnx (Discord) | "Atoll Dynamic Island... Alter AI assistant... aren't detected by SaneBar" | Uses external monitor with center overlays |
+
+**Analysis:**
+- User has apps like Atoll (Dynamic Island clone) in top-center of screen
+- SaneBar doesn't detect these and icons can overlap
+- Would need to scan for non-standard windows in menu bar region
+- Challenging: third-party apps don't expose consistent APIs
+
+---
+
+### 8. Visual Icon Grid (No Search Required)
+**Priority: MEDIUM** | **Requests: 1** | **Status: Not Started**
+
+| Requester | Request | Notes |
+|-----------|---------|-------|
+| bleducnx (Discord) | "I have 19 modules... I don't know their names, but I do know their icons. The search field is completely useless." | Wants instant visual grid |
+
+**Analysis:**
+- Current Find Icon requires text search
+- User wants to see ALL hidden icons visually without typing
+- Could add "Show All" mode that displays icon grid immediately
+- Related to secondary bar request but lighter-weight
+
+---
+
 ## Bug Reports / UX Issues
 
 ### 1. Global Shortcut Conflicts
-**Priority: HIGH** | **Status: Needs Fix**
+**Priority: HIGH** | **Status: Fixed (v1.0.3)**
 
 | Requester | Issue | Notes |
 |-----------|-------|-------|
 | u/a_tsygankov | "cmd + , for 'Open settings' overrides all other apps" | Should disable by default |
 
-**Fix:**
-- Remove default `⌘,` shortcut for Settings
-- Users can still set it manually if desired
-- Standard macOS convention is app-specific `⌘,`
+**Fixed:**
+- Changed Find Icon shortcut from `⌘Space` to `⌘⇧Space` to avoid Spotlight conflict
+- Settings shortcut `⌘,` is app-specific (only works when SaneBar menu is open)
 
 ---
 
-### 2. Auto-Hide Window Stacking Issue
+### 2. Website Documentation Out of Date
+**Priority: HIGH** | **Status: Needs Update**
+
+| Requester | Issue | Notes |
+|-----------|-------|-------|
+| maddada_ (Discord) | "May I know how it works please? I can't find anything about this on the website" | Asking about notch feature |
+
+**Action Required:**
+- Update sanebar.com with current feature documentation
+- Add notch-awareness explanation
+- Add Find Icon documentation
+- Add Visual Zones documentation
+
+---
+
+### 3. Auto-Hide Window Stacking Issue
 **Priority: MEDIUM** | **Status: Needs Investigation**
 
 | Requester | Issue | Notes |
@@ -144,14 +209,40 @@
 ## Next Steps
 
 1. **Immediate (v1.0.x)**
-   - [ ] Fix `⌘,` shortcut conflict
+   - [x] Fix shortcut conflict (changed to `⌘⇧Space`)
    - [x] Add Find Icon to right-click menu
-   - [x] Improve Find Icon performance
+   - [x] Improve Find Icon performance (cache pre-warming)
+   - [ ] Further optimize Find Icon (still slow for some users)
+   - [ ] Update website documentation
 
 2. **Short Term (v1.1)**
    - [ ] Investigate spacing control implementation
    - [ ] Research auto-hide interaction detection
    - [x] Implement visual zones (custom dividers/spacers)
+   - [ ] Icon Groups feature
+   - [ ] Visual icon grid (instant display without search)
 
 3. **Evaluate Later**
    - Secondary menu bar row
+   - Third-party overlay detection (Atoll, etc.)
+
+---
+
+## Testimonials (Jan 2026)
+
+| User | Quote | Source |
+|------|-------|--------|
+| ujc-cjw | "Finally, a replacement app has arrived—I'm so glad! It's been working perfectly so far." | Reddit r/macapps |
+| bleducnx | "The product is very stable and offers a wide range of options." | Discord |
+| u/a_tsygankov | "I really like that I can adjust SaneBar's behavior with AppleScript" | Reddit r/macapps |
+
+---
+
+## Tools Mentioned by Users
+
+| Tool | Purpose | Notes |
+|------|---------|-------|
+| TighterMenubar | Menu bar spacing | Free, https://github.com/vanja-ivancevic/TighterMenubar |
+| Menu Bar Spacing | Menu bar spacing | By Sindre Sorhus |
+| Atoll | Dynamic Island clone | Third-party overlay that users want detected |
+| Alter AI | AI assistant | Sits in top-center, users want detected |
