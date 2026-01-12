@@ -8,7 +8,7 @@
 ## High Demand Features
 
 ### 1. Menu Bar Spacing Control
-**Priority: HIGH** | **Requests: 2+** | **Status: Not Started**
+**Priority: HIGH** | **Requests: 2+** | **Status: ✅ COMPLETED**
 
 | Requester | Request | Notes |
 |-----------|---------|-------|
@@ -25,6 +25,12 @@
 - Would require injecting spacing between AXUIElements
 - May need to use different technique than current approach
 - Reference: https://sindresorhus.com/menu-bar-spacing
+
+**Implemented (Jan 11, 2026):**
+- Toggle in Advanced > System Icon Spacing ("Tighter menu bar icons")
+- Uses `NSStatusItemSpacing` + `NSStatusItemSelectionPadding` defaults (1-10 range)
+- Defaults to 4,4 - helps recover icons hidden by notch on MacBook Pro
+- Requires logout/login for changes to take effect
 
 ---
 
@@ -43,8 +49,14 @@
 
 **Still Reported Slow (Jan 11, 2026):**
 - bleducnx reports 6+ seconds on MacBook Air M2
-- May need more aggressive caching or background refresh
-- Consider: instant display of cached icons, then refresh in background
+
+**Investigation (Verified Jan 11, 2026):**
+- Cache pre-warm ✅ implemented (called on launch)
+- Cache validity ✅ 300 seconds (5 minutes)
+- Cache-first loading ✅ `loadCachedApps()` called before `refreshApps()`
+- **Likely cause:** First open BEFORE prewarm completes (race condition)
+- **Or:** User in "Hidden" mode (uses different, slower cache)
+- **Action needed:** Test on fresh launch to confirm timing
 
 ---
 
@@ -129,17 +141,39 @@
 ---
 
 ### 8. Visual Icon Grid (No Search Required)
-**Priority: MEDIUM** | **Requests: 1** | **Status: Not Started**
+**Priority: MEDIUM** | **Requests: 1** | **Status: ✅ Already Implemented**
 
 | Requester | Request | Notes |
 |-----------|---------|-------|
 | bleducnx (Discord) | "I have 19 modules... I don't know their names, but I do know their icons. The search field is completely useless." | Wants instant visual grid |
 
-**Analysis:**
-- Current Find Icon requires text search
-- User wants to see ALL hidden icons visually without typing
-- Could add "Show All" mode that displays icon grid immediately
-- Related to secondary bar request but lighter-weight
+**Status (Verified Jan 11, 2026):**
+- Default mode is "All" - shows ALL icons immediately
+- Search field is HIDDEN by default (`isSearchVisible = false`)
+- User sees icon grid on open, no typing required
+- Search is optional filter, toggled via magnifying glass button
+- **User likely didn't notice because:** slow cache load made it seem broken
+
+---
+
+### 9. Find Icon Move Improvements
+**Priority: MEDIUM** | **Requests: 1** | **Status: Partially Done**
+
+| Requester | Request | Notes |
+|-----------|---------|-------|
+| Internal | "Move icon is slow, should support bulk moves" | Jan 11, 2026 |
+
+**Implemented (Jan 11, 2026):**
+- ✅ Cursor position restored after move (no more "mouse hijacking")
+- ✅ Hidden/Visible/All tabs work correctly (separator origin fix)
+
+**Still Needed:**
+- **Speed optimization**: Current delays ~100ms (20+30+50ms safety margins). Could potentially reduce but risky without extensive testing.
+- **Bulk moves**: Multi-select icons and "Move All to Hidden/Visible" button. Requires UI changes (checkboxes or shift-click), loop logic, single cursor restore at end.
+
+**Complexity Assessment:**
+- Speed optimization: MEDIUM (risky to reduce timing without testing)
+- Bulk moves: HIGH (UI changes + loop logic + state management)
 
 ---
 
@@ -200,7 +234,7 @@
 
 | Date | Feature | Decision | Rationale |
 |------|---------|----------|-----------|
-| Jan 2026 | Menu Bar Spacing | Consider for v1.1 | High demand from power users |
+| Jan 2026 | Menu Bar Spacing | ✅ Implemented | High demand, notch-friendly defaults recover hidden icons |
 | Jan 2026 | Visual Zones (Dividers) | Implemented | Low effort, high reliability, high user ROI |
 | Jan 2026 | Secondary Menu Bar | Deprioritized | Architectural complexity, unclear demand |
 
@@ -216,7 +250,7 @@
    - [ ] Update website documentation
 
 2. **Short Term (v1.1)**
-   - [ ] Investigate spacing control implementation
+   - [x] Spacing control (System Icon Spacing toggle)
    - [ ] Research auto-hide interaction detection
    - [x] Implement visual zones (custom dividers/spacers)
    - [ ] Icon Groups feature
