@@ -1,6 +1,6 @@
 # Script File Rules
 
-> Pattern: `**/Scripts/**/*.rb`, `**/*.rb`, `**/hooks/**/*.rb`
+> Pattern: `**/scripts/**/*.rb`, `**/*.rb`, `**/hooks/**/*.rb`
 
 ---
 
