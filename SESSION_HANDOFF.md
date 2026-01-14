@@ -1,23 +1,25 @@
-# Session Handoff: Find Icon Move Feature Fixed + v1.0.5 Release Blocked (2026-01-13)
+# Session Handoff: Notarization Fix Implemented + Waiting for Monday Auto Build (2026-01-14)
 
-## ❌ CRITICAL BLOCKER: Notarization Failure
+## ✅ FIX READY: Notarization Preflight Implemented
 
-**Status**: v1.0.5 build complete but CANNOT BE NOTARIZED
+**Status**: v1.0.5 ready. LaunchAtLogin helper signing issue FIXED in `scripts/release.sh`.
 
-**Issue**: LaunchAtLogin SPM dependency (v5.0.0) contains unsigned helper binaries in ZIP files:
-- `LaunchAtLoginHelper.zip` and `LaunchAtLoginHelper-with-runtime.zip` contain pre-built binaries
-- These binaries are NOT being re-signed during Xcode build
-- Apple notarization rejects: "The binary is not signed with a valid Developer ID certificate"
-- Affects both x86_64 and arm64 architectures
+**What was fixed**: 
+- Added `fix_and_verify_zipped_apps_in_app()` function that automatically:
+  - Finds LaunchAtLogin helper zips inside app Resources
+  - Re-signs helpers with Developer ID + secure timestamp  
+  - Removes debug entitlements (`get-task-allow`)
+  - Recreates zips with properly signed helpers
+  - Verifies no debug entitlements remain before DMG creation
 
-**Impact**: Cannot release v1.0.5 DMG to public (notarization required for Gatekeeper)
+**Why we're waiting**:
+- 6 old broken builds (1.0.4 and 1.0.5) still in Apple's queue since Jan 12-14
+- Spamming Apple with more submissions risks rejection/throttling
+- Plan: Wait for Monday's auto build to let old submissions timeout/fail
+- Fresh build Monday will have fix applied automatically
+- Submit only after Apple queue clears
 
-**Solutions** (priority order):
-1. **Remove LaunchAtLogin dependency** - Implement launch-at-login using native ServiceManagement API
-2. **Downgrade LaunchAtLogin** - Try older version without ZIP issue
-3. **Manual signing** - Extract, sign, and repack LaunchAtLogin helper bundles post-build
-
-**Decision Needed**: Fix in v1.0.5 or release as v1.0.6?
+**Action**: No manual submissions until Monday. Auto build will handle it.
 
 ---
 
