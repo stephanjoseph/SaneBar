@@ -29,11 +29,12 @@ Focus on **free channels first**, then spend the $200 strategically. The highest
 
 ## Phase 1: Free Foundations (Do This Week)
 
-### 1. MacMenuBar.com Submission
+### 1. MacMenuBar.com Submission ✅ DONE
 - **URL**: https://macmenubar.com/submit-menu-bar-app/
 - **Why**: THE directory for menu bar apps (1200+ apps, 47 categories)
 - **Action**: Email with screenshots showing menu bar interface
 - **Cost**: FREE
+- **Status**: Submitted January 2025
 
 ### 2. 9to5Mac Indie App Spotlight
 - **Contact**: michaelb@9to5mac.com
@@ -208,6 +209,71 @@ The **Bartender acquisition controversy (2024)** created an opening:
 - [Show HN Guidelines](https://news.ycombinator.com/showhn.html)
 - [MacMenuBar Submit](https://macmenubar.com/submit-menu-bar-app/)
 - [r/macapps](https://reddit.com/r/macapps)
+
+---
+
+## Action Plan by Owner
+
+### 🤖 Claude Can Do (Automated/Assisted)
+
+| Task | What I'll Do |
+|------|--------------|
+| **Draft pitch emails** | Write polished emails for 9to5Mac, podcasts, YouTubers |
+| **Create submission text** | Generate descriptions for AlternativeTo, Softpedia, etc. |
+| **Write Reddit/HN posts** | Draft posts with the right tone for each community |
+| **Product Hunt assets** | Tagline, first comment, gallery descriptions |
+| **Comparison content** | SaneBar vs Bartender vs Ice feature tables |
+| **Social media posts** | Twitter/X threads for build-in-public |
+| **Press kit materials** | One-pagers, feature summaries, boilerplate |
+
+### 🤝 Together (Claude + Stephan)
+
+| Task | How We Work Together |
+|------|---------------------|
+| **AlternativeTo submission** | I navigate the form, you review before submit |
+| **Softpedia submission** | I fill the form, you approve final submission |
+| **Product Hunt page setup** | I draft content, you create account & publish |
+| **Podcast outreach** | I draft pitches, you send from your email |
+| **YouTube reviewer outreach** | I research contacts & draft emails, you send |
+
+### 👤 Stephan Only (Requires Your Account/Identity)
+
+| Task | Why You Need To Do It |
+|------|----------------------|
+| **Reddit karma building** | Requires your Reddit account & authentic engagement |
+| **Product Hunt engagement** | 4 weeks of comments/upvotes from your account |
+| **Send emails** | Outreach needs to come from stephanjoseph2007@gmail.com |
+| **BetaList payment** | $129 requires your payment method |
+| **Respond to comments** | Post-launch engagement must be authentic |
+
+---
+
+## New Channels (From Research)
+
+### Additional Directories (All Free)
+
+| Directory | URL | Notes |
+|-----------|-----|-------|
+| **Indie App Catalog** | indiecatalog.app/submit-app | 2,000+ indie apps, Apple-focused |
+| **OpenAlternative** | openalternative.co | Open source alternatives directory |
+| **Setapp consideration** | setapp.com | Could apply for inclusion (revenue share model) |
+
+### Podcasts to Pitch
+
+| Podcast | Why | Pitch Angle |
+|---------|-----|-------------|
+| **Under the Radar** | Marco Arment & David Smith cover indie dev | Privacy-first, solo dev story |
+| **Core Intuition** | Daniel Jalkut & Manton Reece, 4.8★ rating | macOS indie development |
+| **The iOS Dev Podcast** | Features indie journeys, solo makers | Built with Claude, Bartender alternative |
+| **Waiting for Review** | Two indie iOS devs, nuts & bolts focus | Technical deep-dive on menu bar APIs |
+
+### YouTube Reviewers
+
+| Channel | Focus | Contact Strategy |
+|---------|-------|------------------|
+| **Luke Miani** | Mac-specific content | DM on Twitter/X |
+| **Max Tech** | Mac reviews, productivity | Email via channel |
+| **AppFind** | Apple app news & reviews | Submit via their form |
 
 ---
 
