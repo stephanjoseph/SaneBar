@@ -3,6 +3,11 @@
 > Tracking user-requested features from Reddit, GitHub, and support channels.
 > Priority based on: frequency of requests, alignment with vision, implementation effort.
 
+**Related docs:**
+- [BUG_TRACKING.md](../BUG_TRACKING.md) - Bug reports with GitHub issue cross-references
+- [ROADMAP.md](../ROADMAP.md) - High-level feature status
+- [FEATURE_PLAN.md](../FEATURE_PLAN.md) - Implementation details
+
 ---
 
 ## High Demand Features
@@ -126,17 +131,27 @@
 ---
 
 ### 7. Third-Party Overlay Detection (Virtual Notch)
-**Priority: MEDIUM** | **Requests: 1** | **Status: Not Started**
+**Priority: LOW** | **Requests: 1** | **Status: Not Planned (Edge Case)**
 
 | Requester | Request | Notes |
 |-----------|---------|-------|
-| bleducnx (Discord) | "Atoll Dynamic Island... Alter AI assistant... aren't detected by SaneBar" | Uses external monitor with center overlays |
+| bleducnx (Reddit) | "Atoll Dynamic Island... Alter AI assistant... aren't detected by SaneBar" | Uses 32" monitor with center overlays |
 
 **Analysis:**
-- User has apps like Atoll (Dynamic Island clone) in top-center of screen
-- SaneBar doesn't detect these and icons can overlap
-- Would need to scan for non-standard windows in menu bar region
-- Challenging: third-party apps don't expose consistent APIs
+- User has apps like Atoll (Dynamic Island clone) and Alter AI (15cm overlay) in top-center
+- When revealing icons via Find Icon, they appear in original position - potentially behind the overlay
+- Very niche use case: intersection of dynamic island apps + AI overlays + many menu bar items + SaneBar
+
+**User's Proposed Solutions:**
+1. **Secondary menu bar** - Not feasible (macOS doesn't support multiple NSStatusItem bars)
+2. **"Reveal to Front"** - When showing via Find Icon, move icon to far-right (near Control Center) where it's always accessible
+
+**Cost-Benefit Assessment:**
+- NSStatusItem positioning is macOS-controlled; we'd be fighting the system
+- Risk of introducing positioning bugs for 99% of users to serve 0.1%
+- Recommended workaround: temporarily quit/minimize overlay apps when accessing hidden icons
+
+**Decision:** Not pursuing unless more users report similar conflicts
 
 ---
 
@@ -322,3 +337,34 @@
 | Menu Bar Spacing | Menu bar spacing | By Sindre Sorhus |
 | Atoll | Dynamic Island clone | Third-party overlay that users want detected |
 | Alter AI | AI assistant | Sits in top-center, users want detected |
+
+---
+
+## Platform Support Requests
+
+### Intel (x86_64) Support
+**Priority: LOW** | **Requests: 1** | **Status: Not Planned (No Test Hardware)**
+
+| Requester | Request | Notes |
+|-----------|---------|-------|
+| Comfortable-Arm4656 (Reddit) | "bad CPU type in executable" | Hackintosh user, Jan 2026 |
+
+**Error:**
+```
+zsh: bad CPU type in executable: sanebar.app/Contents/macOS/sanebar
+```
+
+**Analysis:**
+- SaneBar is ARM64-only (Apple Silicon)
+- User has Intel x86_64 CPU (Hackintosh)
+- Would require Universal Binary build (arm64 + x86_64)
+
+**Cost-Benefit Assessment:**
+- **Technical difficulty:** Low (one-line config change: `arch: [arm64, x86_64]`)
+- **Testing difficulty:** High (no Intel hardware available)
+- **Maintenance burden:** Medium-High (ongoing dual-architecture testing)
+- **User base:** Shrinking (Intel Macs phased out since 2020, Hackintosh is unsupported niche)
+
+**Decision:** Not pursuing without Intel test hardware. Community contribution welcome - user could build locally with Claude Code and submit PR if successful.
+
+**Response sent to user:** Invited them to try building with Claude Code on their machine and submit changes if it works
